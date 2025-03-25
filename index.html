@@ -102,7 +102,7 @@
         
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin: 40px 0;
         }
@@ -123,6 +123,20 @@
             box-shadow: var(--shadow-hover);
         }
         
+        .option-card-bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: var(--transition);
+        }
+        
+        .option-card:hover .option-card-bg {
+            transform: scale(1.05);
+        }
+        
         .option-card-content {
             position: absolute;
             top: 0;
@@ -135,6 +149,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            z-index: 2;
         }
         
         .option-card-title {
@@ -167,17 +182,6 @@
         .option-card-button:hover {
             background-color: var(--gray-dark);
             transform: translateY(-3px);
-        }
-        
-        .option-card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .option-card:hover .option-card-image {
-            transform: scale(1.05);
         }
         
         footer {
@@ -231,7 +235,7 @@
             <div class="options-grid">
                 <!-- Opção 1: Design Original -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/5a0505/ffffff?text=Design+Original" class="option-card-image" alt="Design Original">
+                    <div class="option-card-bg" style="background: linear-gradient(135deg, #4a0404, #8a2121);"></div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Design Original</h3>
                         <p class="option-card-description">Design tradicional com cores marcantes em vermelho escuro e interface profissional.</p>
@@ -241,7 +245,11 @@
                 
                 <!-- Opção 2: Minimalista Moderno -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/f8f8f8/333333?text=Minimalista" class="option-card-image" alt="Minimalista Moderno">
+                    <div class="option-card-bg" style="background: #f8f8f8; position: relative;">
+                        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 70%; height: 3px; background: #5a0505;"></div>
+                        <div style="position: absolute; top: 60px; left: 20px; right: 20px; height: 100px; background: white; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"></div>
+                        <div style="position: absolute; bottom: 60px; left: 20px; right: 20px; height: 100px; background: white; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Minimalista Moderno</h3>
                         <p class="option-card-description">Design elegante com tons claros, tipografia refinada e elementos visuais sutis.</p>
@@ -251,7 +259,11 @@
                 
                 <!-- Opção 3: Tema Escuro -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/121212/ffffff?text=Tema+Escuro" class="option-card-image" alt="Tema Escuro">
+                    <div class="option-card-bg" style="background: #121212; position: relative;">
+                        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: rgba(255,255,255,0.2);"></div>
+                        <div style="position: absolute; top: 80px; left: 20px; right: 20px; height: 80px; background: #1e1e1e; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);"></div>
+                        <div style="position: absolute; bottom: 80px; left: 20px; right: 20px; height: 80px; background: #1e1e1e; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Tema Escuro</h3>
                         <p class="option-card-description">Design sofisticado com fundo escuro, gradientes vibrantes e efeito de vidro.</p>
@@ -261,7 +273,11 @@
                 
                 <!-- Opção 4: Design Futurista -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/0b0b0e/ffffff?text=Futurista" class="option-card-image" alt="Design Futurista">
+                    <div class="option-card-bg" style="background: #0b0b0e; position: relative; overflow: hidden;">
+                        <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); top: -50px; right: -50px;"></div>
+                        <div style="position: absolute; width: 150px; height: 150px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); bottom: -30px; left: -30px;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(255,255,255,0.03); border-radius: 10px;"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Design Futurista</h3>
                         <p class="option-card-description">Interface de alta tecnologia com padrões geométricos e estética visual avançada.</p>
@@ -271,7 +287,12 @@
                 
                 <!-- Opção 5: Legal Tech -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/f8f8f8/5a0505?text=Legal+Tech" class="option-card-image" alt="Legal Tech">
+                    <div class="option-card-bg" style="background: #f8f8f8; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #5a0505;"></div>
+                        <div style="position: absolute; top: 80px; left: 20px; width: 40px; height: 3px; background: #5a0505;"></div>
+                        <div style="position: absolute; top: 100px; left: 20px; right: 20px; height: 50px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);"></div>
+                        <div style="position: absolute; top: 160px; left: 20px; right: 20px; height: 50px; background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Legal Tech</h3>
                         <p class="option-card-description">Design para o setor jurídico, com foco em cursos de IA para advogados.</p>
@@ -281,7 +302,10 @@
                 
                 <!-- Opção 6: Neumorfismo -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/e6e7ee/5a0505?text=Neumorfismo" class="option-card-image" alt="Neumorfismo">
+                    <div class="option-card-bg" style="background: #e6e7ee; position: relative;">
+                        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; border-radius: 50%; box-shadow: 5px 5px 10px #c8c9d8, -5px -5px 10px #ffffff;"></div>
+                        <div style="position: absolute; top: 120px; left: 30px; right: 30px; height: 100px; border-radius: 16px; background: #e6e7ee; box-shadow: 5px 5px 10px #c8c9d8, -5px -5px 10px #ffffff;"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Neumorfismo Suave</h3>
                         <p class="option-card-description">Design neumórfico com elementos suavemente elevados e efeitos de luz e sombra.</p>
@@ -291,7 +315,11 @@
                 
                 <!-- Opção 7: Imersivo 3D -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/09071e/ffffff?text=3D+Imersivo" class="option-card-image" alt="Imersivo 3D">
+                    <div class="option-card-bg" style="background: #09071e; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 70% 30%, rgba(149, 20, 40, 0.4) 0%, rgba(9, 7, 30, 0.9) 70%);"></div>
+                        <div style="position: absolute; width: 80px; height: 80px; border-radius: 10px; border: 2px solid rgba(149, 20, 40, 0.5); top: 30%; left: 20%;"></div>
+                        <div style="position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(149, 20, 40, 0.5); top: 50%; right: 15%;"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Imersivo 3D</h3>
                         <p class="option-card-description">Design com elementos 3D, efeitos de profundidade e iluminação dinâmica.</p>
@@ -299,9 +327,12 @@
                     </div>
                 </div>
                 
-                <!-- Opção 8: Estrutura Original -->
+                <!-- Opção 8: Foco Jurídico -->
                 <div class="option-card">
-                    <img src="https://via.placeholder.com/600x800/5a0505/ffffff?text=Foco+Jurídico" class="option-card-image" alt="Foco Jurídico">
+                    <div class="option-card-bg" style="background: linear-gradient(135deg, #300312, #5a0505); position: relative; overflow: hidden;">
+                        <div style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 70%); top: -100px; right: -100px;"></div>
+                        <div style="position: absolute; top: 100px; left: 30px; right: 30px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); height: 100px;"></div>
+                    </div>
                     <div class="option-card-content">
                         <h3 class="option-card-title">Foco Jurídico</h3>
                         <p class="option-card-description">Design seguindo estritamente a estrutura do site com foco em IA para profissionais do Direito.</p>
