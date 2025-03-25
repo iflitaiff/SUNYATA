@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunyata Consulting | IA para Profissionais do Direito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5a0505;
+            --primary-light: #8a2121;
+            --primary-dark: #4a0404;
+            --primary-gradient: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #f8f8f8;
+            --gray-dark: #e0e0e0;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        header {
+            background-color: var(--light);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin-right: 30px;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .lang-switch {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .lang-switch span {
+            margin: 0 5px;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        
+        .lang-switch span.active {
+            opacity: 1;
+            color: var(--primary);
+        }
+        
+        .lang-switch span:hover {
+            opacity: 0.8;
+        }
+        
+        .cta-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(90, 5, 5, 0.2);
+        }
+        
+        .hero {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            top: -300px;
+            right: -200px;
+            z-index: 1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            bottom: -200px;
+            left: -100px;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .stat-highlight {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .stat-highlight p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .abstract-image {
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .abstract-image::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .abstract-image::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+        
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .transformation {
+            background-color: var(--gray);
+        }
+        
+        .transformation-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .transformation-text {
+            flex: 1;
+        }
+        
+        .transformation-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .transformation-stats {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-item {
+            margin-bottom: 25px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .stat-description {
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .learning-path {
+            background-color: white;
+        }
+        
+        .modules-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .module-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+        
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .module-content {
+            margin-left: 55px;
+        }
+        
+        .objectives-list, .content-list, .benefits-list {
+            margin: 15px 0;
+        }
+        
+        .objectives-list h4, .content-list h4, .benefits-list h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .objectives-list ul, .content-list ul, .benefits-list ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .objectives-list li, .content-list li, .benefits-list li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .objectives-list li::before, .content-list li::before, .benefits-list li::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .benefits-list li::before {
+            background: var(--primary-light);
+        }
+        
+        .objectives-list li::before {
+            background: #333;
+        }
+        
+        .features {
+            background-color: var(--gray);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            padding-left: 5px;
+            margin-top: 15px;
+        }
+        
+        .feature-card li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .feature-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .formats {
+            background-color: white;
+        }
+        
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .format-card {
+            background: var(--gray);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .format-card:hover {
+            transform: translateY(-5px);
+            background: var(--primary-gradient);
+            color: white;
+        }
+        
+        .format-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .format-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .adaptation {
+            background-color: var(--gray);
+        }
+        
+        .adaptation-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .adaptation-text {
+            flex: 1;
+        }
+        
+        .adaptation-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .sectors-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .sector-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .sector-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .sector-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .sector-icon i {
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-align: left;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+        }
+        
+        .footer-logo img {
+            height: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .footer-column h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-left: 15px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .formats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .transformation-content, .adaptation-content {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .sectors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Utility Classes */
+        .mt-20 {
+            margin-top: 20px;
+        }
+        
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="LOGO_SUNYATA.jpg" alt="Sunyata Logo">
+                    <div class="logo-text">SUNYATA</div>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Treinamentos</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                    <div class="lang-switch">
+                        <span class="active">PT</span>
+                        <span>|</span>
+                        <span>EN</span>
+                    </div>
+                    <a href="#contact" class="cta-button">Fale Conosco</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Inteligência Artificial Generativa para Profissionais do Direito</h1>
+                    <p class="hero-subtitle">Domine as ferramentas que estão transformando a prática jurídica e ganhe vantagem competitiva real</p>
+                    <div class="stat-highlight">
+                        <p>Reduza em até 32% o tempo necessário para tarefas como redação de contratos e documentos jurídicos</p>
+                    </div>
+                    <a href="#contact" class="cta-button">Solicitar informações sobre o treinamento</a>
+                </div>
+                <div class="hero-image">
+                    <div class="abstract-image"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="transformation">
+        <div class="container">
+            <div class="section-header">
+                <h2>O Cenário da Transformação</h2>
+            </div>
+            <div class="transformation-content">
+                <div class="transformation-text">
+                    <h3>A revolução digital no setor jurídico</h3>
+                    <p>O setor jurídico está passando por uma transformação digital sem precedentes, impulsionada pela inteligência artificial generativa. Esta tecnologia está redefinindo como documentos são redigidos, pesquisas são conduzidas e casos são analisados.</p>
+                    <p class="mt-20">Para profissionais do direito, a questão não é mais se a IA terá impacto em sua prática, mas quando e como aproveitar essa tecnologia antes que se torne um padrão de mercado.</p>
+                    <p class="mt-20">Os early adopters dessa transformação estão criando vantagens competitivas significativas, enquanto muitos ainda observam de longe.</p>
+                </div>
+                <div class="transformation-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">89%</div>
+                        <div class="stat-description">dos profissionais jurídicos reconhecem o potencial transformador da IA</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15%</div>
+                        <div class="stat-description">efetivamente adotaram e integram IA em seus processos diários</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">32%</div>
+                        <div class="stat-description">de redução em tempo para tarefas de redação legal entre os usuários de IA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="learning-path">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trilha de Aprendizado</h2>
+                <p>Nossa abordagem estruturada em três níveis progressivos para dominar a IA na prática jurídica</p>
+            </div>
+            <div class="modules-container">
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-number">1</div>
+                        <h3 class="module-title">IA Generativa, Modo de Usar: Fundamentos da Engenharia de Prompts</h3>
+                    </div>
+                    <div class="module-content">
+                        <div class="objectives-list">
+                            <h4>Objetivos do curso:</h4>
+                            <ul>
+                                <li>Compreender os fundamentos das IAs generativas e suas capacidades</li>
+                                <li>Dominar técnicas básicas e avançadas de engenharia de prompts</li>
+                                <li>Identificar quando e como usar diferentes abordagens para obter resultados precisos</li>
+                                <li>Desenvolver habilidades práticas para integrar IA no fluxo de trabalho cotidiano</li>
+                            </ul>
+                        </div>
+                        <div class="content-list">
+                            <h4>Conteúdo programático:</h4>
+                            <ul>
+                                <li>Introdução às IAs generativas: capacidades e limitações</li>
+                                <li>Princípios da engenharia de prompts</li>
+                                <li>Técnicas avançadas: prompts em camadas, raciocínio passo a passo</li>
+                                <li>Ferramentas e interfaces para interação com IAs</li>
+                                <li>Práticas de refinamento e iteração de prompts</li>
+                            </ul>
+                        </div>
+                        <div class="benefits-list">
+                            <h4>Benefícios:</h4>
+                            <ul>
+                                <li>Redução imediata do tempo gasto em tarefas corriqueiras</li>
+                                <li>Capacidade de extrair resultados de alta qualidade das ferramentas de IA</li>
+                                <li>Base sólida para aplicações mais avançadas e especializadas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-number">2</div>
+                        <h3 class="module-title">Inteligência Artificial Generativa para Serviços Jurídicos</h3>
+                    </div>
+                    <div class="module-content">
+                        <div class="objectives-list">
+                            <h4>Objetivos do curso:</h4>
+                            <ul>
+                                <li>Aplicar IA generativa em contextos jurídicos específicos</li>
+                                <li>Adaptar técnicas de engenharia de prompts para tarefas legais</li>
+                                <li>Implementar fluxos de trabalho otimizados com IA para serviços jurídicos</li>
+                                <li>Garantir a precisão e confiabilidade das respostas em contextos sensíveis</li>
+                            </ul>
+                        </div>
+                        <div class="content-list">
+                            <h4>Conteúdo programático:</h4>
+                            <ul>
+                                <li>Redação assistida de contratos, petições e pareceres</li>
+                                <li>Pesquisa jurídica potencializada por IA</li>
+                                <li>Análise de jurisprudência e precedentes</li>
+                                <li>Verificação de conformidade e análise de riscos</li>
+                                <li>Estudos de caso e exemplos práticos do setor jurídico</li>
+                            </ul>
+                        </div>
+                        <div class="benefits-list">
+                            <h4>Benefícios:</h4>
+                            <ul>
+                                <li>Aumento de produtividade em tarefas específicas da advocacia</li>
+                                <li>Melhoria na qualidade de trabalhos jurídicos complexos</li>
+                                <li>Capacidade de oferecer serviços diferenciados e inovadores</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card fade-in">
+                    <div class="module-header">
+                        <div class="module-number">3</div>
+                        <h3 class="module-title">OpenAI GPTs: Criando Assistentes Jurídicos Personalizados</h3>
+                    </div>
+                    <div class="module-content">
+                        <div class="objectives-list">
+                            <h4>Objetivos do curso:</h4>
+                            <ul>
+                                <li>Desenvolver GPTs personalizados para tarefas jurídicas específicas</li>
+                                <li>Configurar e otimizar assistentes de IA para seu contexto profissional</li>
+                                <li>Implementar sistemas de verificação e controle de qualidade</li>
+                                <li>Criar um ecossistema integrado de assistentes para diferentes funções</li>
+                            </ul>
+                        </div>
+                        <div class="content-list">
+                            <h4>Conteúdo programático:</h4>
+                            <ul>
+                                <li>Fundamentos da plataforma GPT da OpenAI</li>
+                                <li>Configuração de instruções, conhecimento e capacidades</li>
+                                <li>Integração de fontes externas e bases de conhecimento</li>
+                                <li>Criação de GPTs especializados em diferentes áreas do Direito</li>
+                                <li>Estratégias para atualização e manutenção de assistentes</li>
+                            </ul>
+                        </div>
+                        <div class="benefits-list">
+                            <h4>Benefícios:</h4>
+                            <ul>
+                                <li>Ferramentas personalizadas que incorporam seu conhecimento específico</li>
+                                <li>Escalabilidade de competências através de assistentes especializados</li>
+                                <li>Vantagem competitiva através de tecnologia customizada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Por que escolher nosso treinamento</h2>
+                <p>Nossos diferenciais para transformar sua experiência de aprendizado em resultados concretos</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i>✓</i>
+                    </div>
+                    <h3>Foco Prático e Orientado a Resultados</h3>
+                    <p>Nossa metodologia vai além da teoria para entregar resultados imediatos e tangíveis para sua prática jurídica.</p>
+                    <ul>
+                        <li>Aprendizado hands-on com exercícios baseados em cenários reais</li>
+                        <li>Desmistificação da IA com abordagem pragmática</li>
+                        <li>Resultados concretos e imediatos</li>
+                    </ul>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i>✓</i>
+                    </div>
+                    <h3>Conteúdo Personalizado e Flexível</h3>
+                    <p>Adaptamos nosso treinamento às necessidades específicas do seu escritório ou departamento jurídico.</p>
+                    <ul>
+                        <li>Casos específicos para diferentes áreas jurídicas</li>
+                        <li>Adaptação às necessidades de escritórios e departamentos</li>
+                        <li>Acompanhamento individualizado</li>
+                    </ul>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i>✓</i>
+                    </div>
+                    <h3>Expertise Reconhecida e Atualizada</h3>
+                    <p>Conte com instrutores que combinam conhecimento acadêmico com experiência prática em IA aplicada ao Direito.</p>
+                    <ul>
+                        <li>Instrutores com conhecimento acadêmico e prático</li>
+                        <li>Conteúdo baseado em pesquisas recentes</li>
+                        <li>Alinhamento com as mais recentes ferramentas e técnicas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="formats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Flexibilidade para atender suas necessidades</h2>
+                <p>Oferecemos diferentes formatos para se adequar à sua realidade e objetivos</p>
+            </div>
+            <div class="formats-grid">
+                <div class="format-card fade-in">
+                    <h3>Palestras</h3>
+                    <p>Eventos introdutórios para sensibilização sobre o tema, com duração de 1-2 horas</p>
+                </div>
+                <div class="format-card fade-in">
+                    <h3>Workshops</h3>
+                    <p>Sessões práticas focadas em temas específicos, com duração de meio dia</p>
+                </div>
+                <div class="format-card fade-in">
+                    <h3>Treinamentos</h3>
+                    <p>Programas completos com módulos estruturados e laboratórios práticos</p>
+                </div>
+                <div class="format-card fade-in">
+                    <h3>In-company</h3>
+                    <p>Adaptação exclusiva para as necessidades da sua organização</p>
+                </div>
+            </div>
+            <div class="formats-grid mt-20">
+                <div class="format-card fade-in">
+                    <h3>Presencial</h3>
+                    <p>Interação direta com instrutores e outros participantes</p>
+                </div>
+                <div class="format-card fade-in">
+                    <h3>Online</h3>
+                    <p>Flexibilidade de horários e acesso a partir de qualquer localização</p>
+                </div>
+                <div class="format-card fade-in">
+                    <h3>Híbrido</h3>
+                    <p>Combinação de atividades presenciais e remotas</p>
+                </div>
+                <div class="format-card fade-in">
+                    <h3>Personalizado</h3>
+                    <p>Formato customizado segundo suas necessidades específicas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="adaptation">
+        <div class="container">
+            <div class="section-header">
+                <h2>Este treinamento pode ser adaptado para seu setor</h2>
+            </div>
+            <div class="adaptation-content">
+                <div class="adaptation-text">
+                    <h3>Metodologia flexível para diferentes indústrias</h3>
+                    <p>Embora nosso treinamento tenha sido desenvolvido inicialmente para o setor jurídico, nossa metodologia pode ser adaptada para outros setores e indústrias.</p>
+                    <p class="mt-20">Aplicamos os mesmos princípios de engenharia de prompts e uso estratégico de IA, mas personalizamos os casos, exemplos e aplicações para refletir os desafios específicos do seu setor.</p>
+                    <p class="mt-20">Converse conosco para entendermos suas necessidades e desenvolvermos uma versão customizada do nosso treinamento.</p>
+                    <div class="mt-20">
+                        <a href="#contact" class="cta-button">Converse conosco sobre uma versão personalizada</a>
+                    </div>
+                </div>
+                <div class="sectors-grid">
+                    <div class="sector-item fade-in">
+                        <div class="sector-icon">
+                            <i>E</i>
+                        </div>
+                        <div>Educação</div>
+                    </div>
+                    <div class="sector-item fade-in">
+                        <div class="sector-icon">
+                            <i>F</i>
+                        </div>
+                        <div>Finanças</div>
+                    </div>
+                    <div class="sector-item fade-in">
+                        <div class="sector-icon">
+                            <i>S</i>
+                        </div>
+                        <div>Saúde</div>
+                    </div>
+                    <div class="sector-item fade-in">
+                        <div class="sector-icon">
+                            <i>M</i>
+                        </div>
+                        <div>Marketing</div>
+                    </div>
+                    <div class="sector-item fade-in">
+                        <div class="sector-icon">
+                            <i>R</i>
+                        </div>
+                        <div>RH</div>
+                    </div>
+                    <div class="sector-item fade-in">
+                        <div class="sector-icon">
+                            <i>T</i>
+                        </div>
+                        <div>Tecnologia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Transforme sua prática jurídica com IA</h2>
+            <p>Entre em contato para solicitar uma proposta personalizada para sua organização</p>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Seu email profissional">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Empresa/Escritório</label>
+                        <input type="text" id="company" placeholder="Nome da sua organização">
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Cargo</label>
+                        <input type="text" id="position" placeholder="Seu cargo ou função">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Interesse específico</label>
+                        <select id="interest">
+                            <option value="">Selecione uma opção</option>
+                            <option value="module1">Módulo 1: Fundamentos</option>
+                            <option value="module2">Módulo 2: IA para Serviços Jurídicos</option>
+                            <option value="module3">Módulo 3: GPTs Personalizados</option>
+                            <option value="complete">Programa Completo</option>
+                            <option value="custom">Treinamento Personalizado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" placeholder="Compartilhe detalhes sobre suas necessidades ou perguntas"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Solicitar proposta</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="LOGO_SUNYATA.jpg" alt="Sunyata Logo">
+                    <p>Consultoria especializada em inteligência artificial, capacitando profissionais e organizações para a transformação digital.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Site</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Sobre</a></li>
+                            <li><a href="#">Serviços</a></li>
+                            <li><a href="#">Treinamentos</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Treinamentos</h4>
+                        <ul>
+                            <li><a href="#">IA para Direito</a></li>
+                            <li><a href="#">Engenharia de Prompts</a></li>
+                            <li><a href="#">GPTs Personalizados</a></li>
+                            <li><a href="#">Workshops</a></li>
+                            <li><a href="#">In-company</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contato</h4>
+                        <ul>
+                            <li><a href="mailto:contato@sunyataconsulting.com">contato@sunyataconsulting.com</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Idioma</h4>
+                        <ul>
+                            <li><a href="#" class="active">Português</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2025 Sunyata Consulting. Todos os direitos reservados.</div>
+                <div class="social-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial check for elements in viewport
+            const fadeElements = document.querySelectorAll('.fade-in');
+            checkElements(fadeElements);
+            
+            // Check on scroll
+            window.addEventListener('scroll', function() {
+                checkElements(fadeElements);
+            });
+            
+            function checkElements(elements) {
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        el.classList.add('active');
+                    }
+                });
+            }
+            
+            // Handle form submission
+            const form = document.getElementById('contact-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Formulário enviado com sucesso! Entraremos em contato em breve.');
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

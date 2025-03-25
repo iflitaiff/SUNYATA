@@ -102,18 +102,18 @@
         
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
-            margin: 60px 0 100px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
         
         .option-card {
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
-            height: 380px;
+            height: 350px;
             cursor: pointer;
             background-color: var(--light);
         }
@@ -123,74 +123,34 @@
             box-shadow: var(--shadow-hover);
         }
         
-        .preview-wrapper {
-            position: relative;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .preview-wrapper::before {
-            content: '';
+        .option-card-content {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .option-card:hover .preview-wrapper::before {
-            opacity: 1;
-        }
-        
-        .preview-screenshot {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .option-card:hover .preview-screenshot {
-            transform: scale(1.05);
-        }
-        
-        .option-card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+            color: white;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 30px;
-            color: white;
-            transition: var(--transition);
         }
         
-        .option-card:hover .option-card-overlay {
-            background: linear-gradient(to top, rgba(90, 5, 5, 0.95) 0%, rgba(90, 5, 5, 0.7) 40%, rgba(90, 5, 5, 0.3) 100%);
-        }
-        
-        .option-card h3 {
+        .option-card-title {
             font-size: 1.5rem;
             margin-bottom: 10px;
             font-weight: 600;
             font-family: 'Space Grotesk', sans-serif;
         }
         
-        .option-card p {
+        .option-card-description {
             font-size: 0.95rem;
             margin-bottom: 20px;
             opacity: 0.9;
-            line-height: 1.5;
         }
         
-        .option-card a {
+        .option-card-button {
             display: inline-block;
             background-color: var(--light);
             color: var(--primary);
@@ -200,31 +160,39 @@
             font-weight: 500;
             font-size: 0.9rem;
             transition: var(--transition);
+            text-align: center;
+            margin-top: auto;
         }
         
-        .option-card a:hover {
+        .option-card-button:hover {
             background-color: var(--gray-dark);
             transform: translateY(-3px);
+        }
+        
+        .option-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .option-card:hover .option-card-image {
+            transform: scale(1.05);
         }
         
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 40px 0;
+            padding: 30px 0;
             text-align: center;
             font-size: 0.9rem;
-        }
-        
-        @media (max-width: 1024px) {
-            .options-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
+            margin-top: 40px;
         }
         
         @media (max-width: 768px) {
             .options-grid {
                 grid-template-columns: 1fr;
-                max-width: 500px;
+                max-width: 450px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -233,46 +201,9 @@
                 font-size: 1.8rem;
             }
             
-            .option-card {
-                height: 350px;
-            }
-            
             .container {
                 padding: 0 20px;
             }
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
-        
-        /* Animation */
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            100% { transform: scale(1.05); opacity: 0.3; }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
         }
     </style>
 </head>
@@ -291,250 +222,90 @@
     <section class="hero">
         <div class="container">
             <h1>Selecione um Estilo Visual</h1>
-            <p>Escolha entre as diferentes opções de design para o site da Sunyata Consulting. Cada versão apresenta a mesma estrutura e conteúdo com uma abordagem visual única.</p>
+            <p>Escolha entre as diferentes opções de design para o site da Sunyata Consulting.</p>
         </div>
     </section>
 
     <section class="options">
         <div class="container">
             <div class="options-grid">
-                <!-- Original Version -->
-                <div class="option-card fade-in" style="animation-delay: 0s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: linear-gradient(135deg, #4a0404, #8a2121); position: relative;">
-                            <!-- Simple preview of the original design -->
-                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; color: white;">
-                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">SUNYATA</div>
-                                <div style="width: 70%; height: 2px; background: white; margin: 0 auto 15px;"></div>
-                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto;">Consultoria em Inteligência Artificial</div>
-                            </div>
-                            <div style="position: absolute; top: 45%; left: 10%; right: 10%; background: rgba(255,255,255,0.1); border-radius: 8px; height: 20%; padding: 15px;"></div>
-                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: white; color: #5a0505; padding: 10px 20px; border-radius: 20px; font-size: 12px; font-weight: bold;">CONHEÇA NOSSOS SERVIÇOS</div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Design Original</h3>
-                        <p>O design tradicional do site com cores marcantes em vermelho escuro, apresentando uma interface limpa e profissional.</p>
-                        <a href="site-sunyata.html" target="_blank">Ver Design</a>
+                <!-- Opção 1: Design Original -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/5a0505/ffffff?text=Design+Original" class="option-card-image" alt="Design Original">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Design Original</h3>
+                        <p class="option-card-description">Design tradicional com cores marcantes em vermelho escuro e interface profissional.</p>
+                        <a href="site-sunyata.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 1 -->
-                <div class="option-card fade-in" style="animation-delay: 0.1s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: white; position: relative;">
-                            <!-- Simple preview of version 1 design -->
-                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; color: #5a0505;">
-                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">SUNYATA</div>
-                                <div style="width: 60px; height: 3px; background: #5a0505; margin: 0 auto 15px;"></div>
-                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto; color: #333;">Consultoria Moderna em IA</div>
-                            </div>
-                            <div style="position: absolute; top: 40%; left: 10%; right: 10%; display: flex; gap: 5%;">
-                                <div style="flex: 1; background: white; border-radius: 12px; height: 120px; border-top: 5px solid #5a0505; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"></div>
-                                <div style="flex: 1; background: white; border-radius: 12px; height: 120px; border-top: 5px solid #5a0505; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"></div>
-                            </div>
-                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: #5a0505; color: white; padding: 12px 25px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(90,5,5,0.3);">SAIBA MAIS</div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Minimalista Moderno</h3>
-                        <p>Design elegante e contemporâneo com tons claros, tipografia refinada e elementos visuais sutis.</p>
-                        <a href="version1.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 2: Minimalista Moderno -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/f8f8f8/333333?text=Minimalista" class="option-card-image" alt="Minimalista Moderno">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Minimalista Moderno</h3>
+                        <p class="option-card-description">Design elegante com tons claros, tipografia refinada e elementos visuais sutis.</p>
+                        <a href="version1.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 2 -->
-                <div class="option-card fade-in" style="animation-delay: 0.2s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: #121212; position: relative;">
-                            <!-- Simple preview of version 2 design -->
-                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center;">
-                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; background: linear-gradient(to right, #b91a1a, #ed2525); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SUNYATA</div>
-                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto; color: rgba(255,255,255,0.7);">Consultoria em IA</div>
-                            </div>
-                            <div style="position: absolute; top: 40%; left: 10%; right: 10%; display: flex; gap: 5%;">
-                                <div style="flex: 1; background: #1e1e1e; border-radius: 12px; height: 120px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);"></div>
-                                <div style="flex: 1; background: #1e1e1e; border-radius: 12px; height: 120px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);"></div>
-                            </div>
-                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #b91a1a, #ed2525); color: white; padding: 12px 25px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(185,26,26,0.3);">EXPLORAR</div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Tema Escuro Moderno</h3>
-                        <p>Design sofisticado com fundo escuro, gradientes vibrantes e elementos de interface com efeito de vidro.</p>
-                        <a href="version2.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 3: Tema Escuro -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/121212/ffffff?text=Tema+Escuro" class="option-card-image" alt="Tema Escuro">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Tema Escuro</h3>
+                        <p class="option-card-description">Design sofisticado com fundo escuro, gradientes vibrantes e efeito de vidro.</p>
+                        <a href="version2.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 3 -->
-                <div class="option-card fade-in" style="animation-delay: 0.3s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: #0b0b0e; position: relative; overflow: hidden;">
-                            <!-- Tech pattern background simulation -->
-                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
-                            <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(133,19,19,0.3); top: 10%; left: 60%; animation: pulse 3s infinite alternate;"></div>
-                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2;">
-                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: white; font-family: 'Space Grotesk', sans-serif;">SUNYATA</div>
-                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto; color: rgba(255,255,255,0.7);">
-                                    <span style="color: #851313;">IA</span> do Futuro
-                                </div>
-                            </div>
-                            <div style="position: absolute; top: 40%; left: 10%; right: 10%; display: flex; gap: 5%;">
-                                <div style="flex: 1; background: rgba(255,255,255,0.02); border-radius: 8px; height: 120px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);"></div>
-                                <div style="flex: 1; background: rgba(255,255,255,0.02); border-radius: 8px; height: 120px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);"></div>
-                            </div>
-                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: #851313; color: white; padding: 12px 25px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(133,19,19,0.3);">DESCUBRA</div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Design Futurista</h3>
-                        <p>Interface de alta tecnologia com padrões geométricos, elementos interativos e estética visual avançada.</p>
-                        <a href="version3.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 4: Design Futurista -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/0b0b0e/ffffff?text=Futurista" class="option-card-image" alt="Design Futurista">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Design Futurista</h3>
+                        <p class="option-card-description">Interface de alta tecnologia com padrões geométricos e estética visual avançada.</p>
+                        <a href="version3.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 4: Legal Tech Focus -->
-                <div class="option-card fade-in" style="animation-delay: 0.4s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: #f8f8f8; position: relative;">
-                            <!-- Legal Tech preview -->
-                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #5a0505; display: flex; align-items: center; padding: 0 20px;">
-                                <div style="width: 30px; height: 30px; background: white; border-radius: 50%; margin-right: 15px;"></div>
-                                <div style="color: white; font-weight: 600;">SUNYATA LEGAL</div>
-                            </div>
-                            <div style="position: absolute; top: 80px; left: 20px; right: 20px;">
-                                <div style="font-size: 22px; font-weight: 600; color: #5a0505; margin-bottom: 10px;">IA para Advogados</div>
-                                <div style="width: 40px; height: 3px; background: #5a0505; margin-bottom: 15px;"></div>
-                                <div style="font-size: 13px; color: #555; max-width: 90%;">Transforme sua prática jurídica com IA generativa</div>
-                            </div>
-                            <div style="position: absolute; top: 170px; left: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px;">
-                                <div style="background: white; border-radius: 8px; height: 50px; display: flex; align-items: center; padding: 0 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                                    <div style="width: 20px; height: 20px; background: #5a0505; border-radius: 50%; margin-right: 10px;"></div>
-                                    <div style="font-size: 12px; color: #333;">Engenharia de Prompts</div>
-                                </div>
-                                <div style="background: white; border-radius: 8px; height: 50px; display: flex; align-items: center; padding: 0 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                                    <div style="width: 20px; height: 20px; background: #5a0505; border-radius: 50%; margin-right: 10px;"></div>
-                                    <div style="font-size: 12px; color: #333;">GPTs Jurídicos Personalizados</div>
-                                </div>
-                            </div>
-                            <div style="position: absolute; bottom: 30px; left: 20px; right: 20px; display: flex; justify-content: center;">
-                                <div style="background: #5a0505; color: white; padding: 10px 25px; border-radius: 30px; font-size: 12px; font-weight: 500; box-shadow: 0 4px 15px rgba(90,5,5,0.2);">SOLICITAR TREINAMENTO</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Legal Tech</h3>
-                        <p>Design especializado para o setor jurídico, com foco em cursos de IA para advogados e elementos profissionais.</p>
-                        <a href="option1.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 5: Legal Tech -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/f8f8f8/5a0505?text=Legal+Tech" class="option-card-image" alt="Legal Tech">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Legal Tech</h3>
+                        <p class="option-card-description">Design para o setor jurídico, com foco em cursos de IA para advogados.</p>
+                        <a href="option1.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 5: Neumorphic Design -->
-                <div class="option-card fade-in" style="animation-delay: 0.5s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: #e6e7ee; position: relative;">
-                            <!-- Neumorphic preview -->
-                            <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: flex; align-items: center;">
-                                <div style="width: 40px; height: 40px; border-radius: 50%; box-shadow: 5px 5px 10px #c8c9d8, -5px -5px 10px #ffffff; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
-                                    <div style="width: 20px; height: 20px; border-radius: 50%; background: #5a0505;"></div>
-                                </div>
-                                <div style="color: #5a0505; font-weight: 600; font-size: 18px;">SUNYATA</div>
-                            </div>
-                            <div style="position: absolute; top: 90px; left: 30px; right: 30px; text-align: center;">
-                                <div style="font-size: 18px; font-weight: 600; color: #5a0505; margin-bottom: 10px;">Consultoria em IA</div>
-                                <div style="font-size: 12px; color: #666; margin-bottom: 20px;">Soluções inovadoras para transformação digital</div>
-                            </div>
-                            <div style="position: absolute; top: 170px; left: 30px; right: 30px;">
-                                <div style="height: 100px; border-radius: 16px; background: #e6e7ee; box-shadow: 5px 5px 10px #c8c9d8, -5px -5px 10px #ffffff; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
-                                    <div style="color: #5a0505; font-size: 14px; font-weight: 500;">Serviços</div>
-                                </div>
-                            </div>
-                            <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);">
-                                <div style="padding: 12px 30px; border-radius: 30px; background: #e6e7ee; box-shadow: 5px 5px 10px #c8c9d8, -5px -5px 10px #ffffff; color: #5a0505; font-size: 12px; font-weight: 500;">EXPLORAR</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Neumorfismo Suave</h3>
-                        <p>Design com estilo neumórfico contemporâneo, elementos suavemente elevados e interface tátil com efeitos de luz e sombra.</p>
-                        <a href="option2.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 6: Neumorfismo -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/e6e7ee/5a0505?text=Neumorfismo" class="option-card-image" alt="Neumorfismo">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Neumorfismo Suave</h3>
+                        <p class="option-card-description">Design neumórfico com elementos suavemente elevados e efeitos de luz e sombra.</p>
+                        <a href="option2.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 6: 3D Immersive -->
-                <div class="option-card fade-in" style="animation-delay: 0.6s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: #09071e; position: relative; overflow: hidden;">
-                            <!-- 3D Immersive preview -->
-                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 70% 30%, rgba(149, 20, 40, 0.4) 0%, rgba(9, 7, 30, 0.9) 70%);"></div>
-                            
-                            <!-- 3D Grid floor effect -->
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 50%; perspective: 800px; transform-style: preserve-3d; overflow: hidden;">
-                                <div style="position: absolute; bottom: -100px; left: -100px; right: -100px; height: 300px; background-image: linear-gradient(to right, rgba(149, 20, 40, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(149, 20, 40, 0.3) 1px, transparent 1px); background-size: 40px 40px; transform: rotateX(60deg); transform-origin: center bottom;"></div>
-                            </div>
-                            
-                            <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2;">
-                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px; color: white; font-family: 'Space Grotesk', sans-serif; text-shadow: 0 0 10px rgba(149, 20, 40, 0.8);">SUNYATA</div>
-                                <div style="font-size: 12px; max-width: 80%; margin: 0 auto; color: rgba(255,255,255,0.8);">
-                                    Imersão em <span style="color: #951428;">Inteligência Artificial</span>
-                                </div>
-                            </div>
-                            
-                            <!-- 3D floating elements -->
-                            <div style="position: absolute; width: 80px; height: 80px; border-radius: 10px; border: 2px solid rgba(149, 20, 40, 0.5); top: 30%; left: 20%; animation: float1 6s ease-in-out infinite alternate; box-shadow: 0 0 20px rgba(149, 20, 40, 0.4);"></div>
-                            <div style="position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(149, 20, 40, 0.5); top: 50%; right: 15%; animation: float2 7s ease-in-out infinite alternate; box-shadow: 0 0 20px rgba(149, 20, 40, 0.4);"></div>
-                            
-                            <div style="position: absolute; top: 130px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 3; width: 80%;">
-                                <div style="font-size: 16px; font-weight: 600; color: white; margin-bottom: 15px; text-shadow: 0 0 10px rgba(149, 20, 40, 0.7);">IA para o Mundo Jurídico</div>
-                            </div>
-                            
-                            <div style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); background: rgba(149, 20, 40, 0.9); color: white; padding: 12px 30px; border-radius: 30px; font-size: 12px; font-weight: 600; box-shadow: 0 0 20px rgba(149, 20, 40, 0.8); backdrop-filter: blur(5px);">EXPLORE O FUTURO</div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Imersivo 3D</h3>
-                        <p>Design imersivo com elementos 3D, efeitos de profundidade e iluminação dinâmica criando uma experiência visual futurista e envolvente.</p>
-                        <a href="option3.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 7: Imersivo 3D -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/09071e/ffffff?text=3D+Imersivo" class="option-card-image" alt="Imersivo 3D">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Imersivo 3D</h3>
+                        <p class="option-card-description">Design com elementos 3D, efeitos de profundidade e iluminação dinâmica.</p>
+                        <a href="option3.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
-
-                <!-- Version 7: Glassmorphism Design -->
-                <div class="option-card fade-in" style="animation-delay: 0.7s;">
-                    <div class="preview-wrapper">
-                        <div class="preview-screenshot" style="background: linear-gradient(135deg, #300312, #5a0505); position: relative; overflow: hidden;">
-                            <!-- Glassmorphism preview -->
-                            <!-- Background shapes -->
-                            <div style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 70%); top: -100px; right: -100px;"></div>
-                            <div style="position: absolute; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 70%); bottom: -50px; left: -100px;"></div>
-                            
-                            <div style="position: absolute; top: 30px; left: 30px; display: flex; align-items: center;">
-                                <div style="width: 35px; height: 35px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); margin-right: 15px; display: flex; align-items: center; justify-content: center;">
-                                    <div style="width: 25px; height: 25px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.8);"></div>
-                                </div>
-                                <div style="color: white; font-weight: 500; font-family: 'Space Grotesk', sans-serif; font-size: 18px; letter-spacing: 1px;">SUNYATA</div>
-                            </div>
-                            
-                            <div style="position: absolute; top: 100px; left: 30px; right: 30px;">
-                                <div style="color: white; font-size: 22px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: 'Space Grotesk', sans-serif;">Consultoria Especializada em IA</div>
-                                <div style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 300; max-width: 80%;">Capacitando profissionais para a nova era digital</div>
-                            </div>
-                            
-                            <div style="position: absolute; top: 200px; left: 30px; width: 80%;">
-                                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); padding: 20px; margin-bottom: 15px;">
-                                    <div style="color: white; font-size: 16px; font-weight: 500; margin-bottom: 5px;">IA para Advogados</div>
-                                    <div style="color: rgba(255,255,255,0.7); font-size: 12px;">Treinamentos especializados para o setor jurídico</div>
-                                </div>
-                            </div>
-                            
-                            <div style="position: absolute; bottom: 30px; left: 30px;">
-                                <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: white; padding: 10px 25px; border-radius: 30px; font-size: 13px; font-weight: 500; border: 1px solid rgba(255,255,255,0.3);">SAIBA MAIS</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="option-card-overlay">
-                        <h3>Glassmorfismo Elegante</h3>
-                        <p>Design sofisticado com elementos de vidro translúcido, efeitos de desfoque e camadas transparentes criando profundidade e elegância visual.</p>
-                        <a href="version3.html" target="_blank">Ver Design</a>
+                
+                <!-- Opção 8: Estrutura Original -->
+                <div class="option-card">
+                    <img src="https://via.placeholder.com/600x800/5a0505/ffffff?text=Foco+Jurídico" class="option-card-image" alt="Foco Jurídico">
+                    <div class="option-card-content">
+                        <h3 class="option-card-title">Foco Jurídico</h3>
+                        <p class="option-card-description">Design seguindo estritamente a estrutura do site com foco em IA para profissionais do Direito.</p>
+                        <a href="option4.html" class="option-card-button">Ver Design</a>
                     </div>
                 </div>
             </div>
@@ -551,7 +322,7 @@
         // Make entire card clickable
         document.querySelectorAll('.option-card').forEach(card => {
             card.addEventListener('click', function(e) {
-                // Prevent clicking the card from triggering the link
+                // Prevent clicking the card from triggering the link if clicked on the button
                 if (e.target.tagName !== 'A') {
                     const link = this.querySelector('a');
                     if (link) {
@@ -560,23 +331,6 @@
                 }
             });
         });
-        
-        // Animation for floating elements
-        document.styleSheets[0].insertRule(`
-            @keyframes float1 {
-                0% { transform: translateY(0) rotate(0deg); }
-                50% { transform: translateY(-15px) rotate(5deg); }
-                100% { transform: translateY(0) rotate(0deg); }
-            }
-        `, document.styleSheets[0].cssRules.length);
-        
-        document.styleSheets[0].insertRule(`
-            @keyframes float2 {
-                0% { transform: translateY(0) rotate(0deg); }
-                50% { transform: translateY(-20px) rotate(-5deg); }
-                100% { transform: translateY(0) rotate(0deg); }
-            }
-        `, document.styleSheets[0].cssRules.length);
     </script>
 </body>
 </html>
