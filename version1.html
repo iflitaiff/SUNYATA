@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunyata Consulting | Consultoria em Inteligência Artificial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #600606;
+            --primary-dark: #4a0404;
+            --primary-light: #8a2121;
+            --text: #333333;
+            --text-light: #666666;
+            --bg-light: #fcfcfc;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .text-center h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(90, 5, 5, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(90, 5, 5, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(90, 5, 5, 0.2);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .language-toggle {
+            margin-left: 20px;
+        }
+        
+        .language-toggle span {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .language-toggle span:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--white);
+            padding: 180px 0 120px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: var(--white);
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-stats {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        .hero-btn {
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        .hero-btn:hover {
+            background-color: #f0f0f0;
+            color: var(--primary);
+        }
+        
+        /* Section Styles */
+        .nova-realidade {
+            position: relative;
+            background-color: var(--white);
+        }
+        
+        .nova-realidade .container {
+            max-width: 800px;
+        }
+        
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-icon {
+            margin: 0 auto 25px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(90, 5, 5, 0.05);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .card-subtitle {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .card-stats {
+            font-size: 14px;
+            color: var(--text-light);
+            font-style: italic;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 15px;
+        }
+        
+        /* Destaque */
+        .destaque {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .destaque::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .destaque-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .destaque h2 {
+            color: var(--white);
+        }
+        
+        .destaque h2::after {
+            background-color: var(--white);
+        }
+        
+        .stats-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Pilares */
+        .pilares {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pilar {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pilar:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pilar-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(90, 5, 5, 0.05);
+        }
+        
+        /* Blog */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .blog-post {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+        }
+        
+        .blog-content {
+            padding: 30px;
+        }
+        
+        .blog-date {
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .blog-post:hover .blog-title {
+            color: var(--primary-light);
+        }
+        
+        /* Contato */
+        .contato {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--white);
+            position: relative;
+        }
+        
+        .contato::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .contato-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contato h2 {
+            color: var(--white);
+        }
+        
+        .contato h2::after {
+            background-color: var(--white);
+        }
+        
+        .contato-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            height: 140px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1e0101;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 150px 0 100px;
+            }
+            
+            .contato-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cards, .pilares, .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-box {
+                font-size: 16px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="25" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="5" y1="50" x2="95" y2="50" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="50" y1="5" x2="50" y2="95" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="20" y1="20" x2="80" y2="80" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="20" y1="80" x2="80" y2="20" stroke="#5a0505" stroke-width="2"/>
+                    </svg>
+                    <div class="logo-text">SUNYATA</div>
+                </div>
+                
+                <div class="mobile-menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Treinamentos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li class="language-toggle">
+                        <span>PT | EN</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>A IA generativa está mudando o mundo. Em um ambiente de negócios em rápida transformação, você vai liderar ou resistir?</h1>
+            
+            <div class="hero-stats">
+                <p>79% dos estrategistas corporativos consideram que a IA vai ser crítico para seu sucesso,<br>porém somente 20% usam ferramentas baseadas em IA no seu dia a dia (Gartner, 2023).</p>
+            </div>
+            
+            <a href="#contato" class="btn hero-btn">ENTENDA O QUE A IA PODE FAZER POR VOCÊ</a>
+        </div>
+    </section>
+
+    <!-- Nova Realidade Section -->
+    <section class="nova-realidade">
+        <div class="container text-center">
+            <h2>A Nova Realidade</h2>
+            <p>A inteligência artificial não é mais uma tecnologia do futuro — é uma força que já está remodelando como trabalhamos, criamos e tomamos decisões.</p>
+            
+            <p>Para profissionais e organizações, a questão não é mais se a IA vai transformar seu setor, mas como você pode se posicionar na vanguarda dessa transformação, para se adaptar aos novos tempos e tirar proveito do que a IA pode lhe oferecer.</p>
+            
+            <p>A Sunyata Consulting nasceu para ser sua parceira nessa jornada, traduzindo o potencial da IA em resultados tangíveis para seu trabalho e negócio.</p>
+        </div>
+    </section>
+
+    <!-- Desafios e Oportunidades Section -->
+    <section class="cards-section">
+        <div class="container">
+            <h2 class="text-center">Desafios e Oportunidades</h2>
+            
+            <div class="cards">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20V10"></path>
+                            <path d="M18 20V4"></path>
+                            <path d="M6 20v-6"></path>
+                        </svg>
+                    </div>
+                    <h3>ALÉM DO HYPE</h3>
+                    <p class="card-subtitle">Separando promessas de resultados reais</p>
+                    <p>Em meio a tantas promessas sobre IA, é fundamental distinguir o que realmente funciona. Ajudamos você a identificar onde a IA pode gerar valor imediato.</p>
+                    <p class="card-stats">Profissionais com conhecimento prático economizam até 37% de tempo em tarefas cotidianas (MIT, 2023)</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 7h-9"></path>
+                            <path d="M14 17H5"></path>
+                            <circle cx="17" cy="17" r="3"></circle>
+                            <circle cx="7" cy="7" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3>POTENCIALIZANDO TALENTOS</h3>
+                    <p class="card-subtitle">IA como amplificadora de capacidades humanas</p>
+                    <p>Estudos da Harvard Business School demonstram que a IA é mais eficaz quando combina-se com a expertise humana. Nossos treinamentos focam nesta sinergia.</p>
+                    <p class="card-stats">A IA é mais eficaz quando se combina com a expertise humana (Harvard Business School)</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h3>ABORDAGEM PRÁTICA</h3>
+                    <p class="card-subtitle">Do conhecimento à aplicação</p>
+                    <p>A diferença entre entender IA conceitualmente e aplicá-la efetivamente é enorme. Nossa abordagem é centrada em aplicações práticas e imediatas.</p>
+                    <p class="card-stats">Nosso foco são aplicações que trazem resultados mensuráveis desde o primeiro dia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaque Section -->
+    <section class="destaque">
+        <div class="container destaque-content text-center">
+            <h2>IA no Direito: Uma Nova Era de Eficiência Jurídica</h2>
+            <p>Nosso primeiro treinamento especializado, que pode ser adaptado para seu setor</p>
+            
+            <div class="stats-box">
+                Reduza em até 32% o tempo necessário para tarefas como redação de contratos e documentos jurídicos (Universidade de Minnesota, 2023)
+            </div>
+            
+            <p>Desenvolvemos um programa completo para o setor jurídico que demonstra na prática como a IA generativa está transformando a advocacia. Este treinamento pode ser adaptado para as necessidades específicas de outros setores e organizações.</p>
+            
+            <a href="#" class="btn">CONHEÇA NOSSO TREINAMENTO PARA O SETOR JURÍDICO</a>
+        </div>
+    </section>
+
+    <!-- Nossa Abordagem Section -->
+    <section class="abordagem">
+        <div class="container">
+            <h2 class="text-center">Nossa Abordagem</h2>
+            <p class="text-center">A Sunyata oferece uma ponte entre o potencial teórico da IA e sua aplicação prática em contextos reais:</p>
+            
+            <div class="pilares">
+                <!-- Pilar 1 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Treinamentos Personalizados</h3>
+                    <p>Desenvolvemos programas adaptados à realidade do seu setor e necessidades específicas.</p>
+                </div>
+                
+                <!-- Pilar 2 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 11 12 14 22 4"></polyline>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                    </div>
+                    <h3>Consultoria Estratégica</h3>
+                    <p>Ajudamos a identificar oportunidades de uso de IA generativa que criam vantagens competitivas.</p>
+                </div>
+                
+                <!-- Pilar 3 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Aplicação Prática</h3>
+                    <p>Nosso foco está em resultados tangíveis e mensuráveis, não apenas conceitos abstratos.</p>
+                </div>
+                
+                <!-- Pilar 4 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5a0505" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <h3>Visão Humana</h3>
+                    <p>Mantemos o elemento humano como centro da transformação digital, usando IA para amplificar capacidades.</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#" class="btn btn-outline">SAIBA COMO PODEMOS ADAPTAR NOSSA METODOLOGIA PARA SEU SETOR</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <h2 class="text-center">Insights sobre IA</h2>
+            
+            <div class="blog-posts">
+                <!-- Post 1 -->
+                <div class="blog-post">
+                    <div class="blog-img"></div>
+                    <div class="blog-content">
+                        <div class="blog-date">25 de Março, 2025</div>
+                        <h3 class="blog-title">Como a IA Generativa está Transformando o Setor Jurídico</h3>
+                        <p>A integração da IA no fluxo de trabalho jurídico promete revolucionar como advogados analisam documentos e...</p>
+                        <a href="#" class="btn-outline" style="padding: 10px 20px; font-size: 14px;">Ler mais</a>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="blog-post">
+                    <div class="blog-img"></div>
+                    <div class="blog-content">
+                        <div class="blog-date">18 de Março, 2025</div>
+                        <h3 class="blog-title">5 Dicas para Implementar IA na sua Organização</h3>
+                        <p>A implementação bem-sucedida de soluções de IA requer planejamento estratégico. Neste artigo, compartilhamos cinco...</p>
+                        <a href="#" class="btn-outline" style="padding: 10px 20px; font-size: 14px;">Ler mais</a>
+                    </div>
+                </div>
+                
+                <!-- Post 3 -->
+                <div class="blog-post">
+                    <div class="blog-img"></div>
+                    <div class="blog-content">
+                        <div class="blog-date">10 de Março, 2025</div>
+                        <h3 class="blog-title">O Futuro da Engenharia de Prompts na Era da IA</h3>
+                        <p>À medida que os modelos de linguagem se tornam mais sofisticados, a engenharia de prompts emerge como uma...</p>
+                        <a href="#" class="btn-outline" style="padding: 10px 20px; font-size: 14px;">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#" class="btn btn-outline">VER TODOS OS ARTIGOS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section class="contato" id="contato">
+        <div class="container contato-content">
+            <h2 class="text-center">Seu Próximo Passo</h2>
+            <p class="text-center">O diferencial competitivo na era da IA não pertencerá necessariamente a quem tem acesso à melhor tecnologia, mas a quem melhor souber integrá-la em seus processos e cultura.</p>
+            <p class="text-center">A Sunyata Consulting está pronta para ser sua parceira nesta jornada.</p>
+            
+            <div class="contato-container">
+                <div class="contato-info">
+                    <h3>Entre em contato</h3>
+                    <p>Estamos prontos para discutir como podemos ajudar você e sua organização a navegar pela revolução da IA generativa.</p>
+                    <p><strong>Email:</strong> contato@sunyataconsulting.com</p>
+                </div>
+                
+                <div class="contato-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" class="form-control" placeholder="Seu nome">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Seu email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="empresa">Empresa/Organização</label>
+                            <input type="text" id="empresa" class="form-control" placeholder="Nome da sua empresa">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" class="form-control" placeholder="Como podemos ajudar?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">ENVIAR MENSAGEM</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="25" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <line x1="5" y1="50" x2="95" y2="50" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <line x1="50" y1="5" x2="50" y2="95" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <line x1="20" y1="20" x2="80" y2="80" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                            <line x1="20" y1="80" x2="80" y2="20" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+                        </svg>
+                        <div style="color: white; font-size: 20px; font-weight: 300;">SUNYATA</div>
+                    </div>
+                    <p>Transformando o potencial da IA em resultados tangíveis para seu trabalho e negócio.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Treinamentos</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#">Treinamentos em IA</a></li>
+                        <li><a href="#">Consultoria Estratégica</a></li>
+                        <li><a href="#">Palestras e Workshops</a></li>
+                        <li><a href="#">Avaliação de IA Readiness</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>Email: contato@sunyataconsulting.com</li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Sunyata Consulting. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

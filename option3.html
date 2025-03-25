@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunyata | Emptiness in Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg: #ffffff;
+            --text-color: #333333;
+            --accent: #d2aa6b;
+            --light-accent: #f5efe0;
+            --dark-accent: #8a7556;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-color);
+            background-color: var(--main-bg);
+            line-height: 1.6;
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            color: var(--accent);
+            cursor: pointer;
+        }
+        
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--light-accent);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-accent);
+        }
+        
+        .text-block {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            padding: 2rem;
+            background-color: rgba(210, 170, 107, 0.1);
+            border-left: 4px solid var(--accent);
+            margin: 3rem 0;
+        }
+        
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#concept">Concept</a></li>
+            <li><a href="#principles">Principles</a></li>
+            <li><a href="#quotes">Wisdom</a></li>
+        </ul>
+    </nav>
+    
+    <header id="home">
+        <h1>SUNYATA</h1>
+        <div class="tagline">The Profound Emptiness at the Heart of Existence</div>
+        <div class="scroll-down">↓</div>
+    </header>
+    
+    <section id="concept">
+        <div class="text-block">
+            <h2>The Concept</h2>
+            <p>In Buddhist philosophy, Sunyata (emptiness) is one of the most profound and central concepts. It refers to the understanding that all phenomena are empty of intrinsic existence and arise dependently on causes and conditions.</p>
+            
+            <p>Sunyata does not mean nothingness or non-existence. Rather, it points to the absence of independent, unchanging essence in all things. This understanding liberates us from attachment and leads to wisdom and compassion.</p>
+            
+            <div class="quote">
+                "Form is emptiness, emptiness is form. Emptiness is not separate from form, form is not separate from emptiness."<br>
+                — Heart Sutra
+            </div>
+        </div>
+    </section>
+    
+    <section id="principles">
+        <h2>Key Principles</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Dependent Origination</h3>
+                    <p>All phenomena arise in dependence on causes and conditions. Nothing exists independently or has a fixed, unchanging nature.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-content">
+                    <h3>Non-Self</h3>
+                    <p>The understanding that there is no fixed, permanent self. What we call "self" is a process rather than an entity.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-content">
+                    <h3>Middle Way</h3>
+                    <p>Sunyata represents the middle way between eternalism (believing things exist inherently) and nihilism (believing nothing exists at all).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="quotes">
+        <div class="text-block">
+            <h2>Wisdom Teachings</h2>
+            <p>Throughout Buddhist literature, the concept of emptiness has been elucidated by many masters. These teachings invite us to directly experience the nature of reality beyond conceptual thinking.</p>
+            
+            <div class="quote">
+                "Emptiness is not something to be afraid of. It is the miracle of non-self that makes possible the existence of all things."<br>
+                — Thich Nhat Hanh
+            </div>
+            
+            <div class="quote">
+                "The essence of all things is emptiness: their arising dependent and nothing in itself."<br>
+                — Nagarjuna
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Sunyata | Exploring Emptiness</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Scroll down button
+            document.querySelector('.scroll-down').addEventListener('click', function() {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Nav bar shadow on scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.padding = '0.7rem 0';
+                    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.padding = '1rem 0';
+                    nav.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

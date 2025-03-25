@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunyata | Website Design Options</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5a0505;
+            --primary-light: #8a2121;
+            --primary-dark: #4a0404;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--light);
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .intro {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 40px 0 80px;
+        }
+        
+        .option-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            height: 400px;
+            cursor: pointer;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .option-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .option-card:hover .option-card-img {
+            transform: scale(1.05);
+        }
+        
+        .option-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .option-card:hover .option-card-overlay {
+            background: linear-gradient(to top, rgba(90, 5, 5, 0.9) 0%, rgba(90, 5, 5, 0.7) 40%, rgba(0, 0, 0, 0) 100%);
+        }
+        
+        .option-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .option-card p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .option-card a {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .option-card a:hover {
+            background-color: var(--primary-light);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .options-grid {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .option-card {
+                height: 350px;
+            }
+        }
+        
+        /* Option previews */
+        .preview-wrapper {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .preview-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .option-card:hover .preview-wrapper::before {
+            opacity: 1;
+        }
+        
+        .preview-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .option-card:hover .preview-screenshot {
+            transform: scale(1.05);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="25" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="5" y1="50" x2="95" y2="50" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="50" y1="5" x2="50" y2="95" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="20" y1="20" x2="80" y2="80" stroke="#5a0505" stroke-width="2"/>
+                        <line x1="20" y1="80" x2="80" y2="20" stroke="#5a0505" stroke-width="2"/>
+                    </svg>
+                    <div class="logo-text">SUNYATA</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="intro">
+        <div class="container">
+            <h1>Escolha o Design do Site</h1>
+            <p>Bem-vindo ao Sunyata Consulting. Selecione um dos designs abaixo para visualizar as diferentes opções de estilo para nosso site. Cada versão apresenta o mesmo conteúdo com uma abordagem visual diferente.</p>
+        </div>
+    </section>
+
+    <section class="options">
+        <div class="container">
+            <div class="options-grid">
+                <!-- Original Version -->
+                <div class="option-card">
+                    <div class="preview-wrapper">
+                        <div class="preview-screenshot" style="background: linear-gradient(to bottom, #4a0404, #8a2121); position: relative;">
+                            <!-- Simple preview of the original design -->
+                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; color: white;">
+                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">SUNYATA</div>
+                                <div style="width: 70%; height: 2px; background: white; margin: 0 auto 15px;"></div>
+                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto;">Consultoria em Inteligência Artificial</div>
+                            </div>
+                            <div style="position: absolute; top: 45%; left: 10%; right: 10%; background: rgba(255,255,255,0.1); border-radius: 8px; height: 20%; padding: 15px;"></div>
+                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: white; color: #5a0505; padding: 10px 20px; border-radius: 20px; font-size: 12px; font-weight: bold;">CONHEÇA NOSSOS SERVIÇOS</div>
+                        </div>
+                    </div>
+                    <div class="option-card-overlay">
+                        <h3>Design Original</h3>
+                        <p>O design tradicional do site com cores marcantes em vermelho escuro, apresentando uma interface limpa e profissional.</p>
+                        <a href="site-sunyata.html" target="_blank">Ver Design</a>
+                    </div>
+                </div>
+
+                <!-- Version 1 -->
+                <div class="option-card">
+                    <div class="preview-wrapper">
+                        <div class="preview-screenshot" style="background: white; position: relative;">
+                            <!-- Simple preview of version 1 design -->
+                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; color: #5a0505;">
+                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px;">SUNYATA</div>
+                                <div style="width: 60px; height: 3px; background: #5a0505; margin: 0 auto 15px;"></div>
+                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto; color: #333;">Consultoria Moderna em IA</div>
+                            </div>
+                            <div style="position: absolute; top: 40%; left: 10%; right: 10%; display: flex; gap: 5%;">
+                                <div style="flex: 1; background: white; border-radius: 12px; height: 120px; border-top: 5px solid #5a0505; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"></div>
+                                <div style="flex: 1; background: white; border-radius: 12px; height: 120px; border-top: 5px solid #5a0505; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"></div>
+                            </div>
+                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: #5a0505; color: white; padding: 12px 25px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(90,5,5,0.3);">SAIBA MAIS</div>
+                        </div>
+                    </div>
+                    <div class="option-card-overlay">
+                        <h3>Minimalista Moderno</h3>
+                        <p>Design elegante e contemporâneo com tons claros, tipografia refinada e elementos visuais sutis.</p>
+                        <a href="version1.html" target="_blank">Ver Design</a>
+                    </div>
+                </div>
+
+                <!-- Version 2 -->
+                <div class="option-card">
+                    <div class="preview-wrapper">
+                        <div class="preview-screenshot" style="background: #121212; position: relative;">
+                            <!-- Simple preview of version 2 design -->
+                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center;">
+                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; background: linear-gradient(to right, #b91a1a, #ed2525); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SUNYATA</div>
+                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto; color: rgba(255,255,255,0.7);">Consultoria em IA</div>
+                            </div>
+                            <div style="position: absolute; top: 40%; left: 10%; right: 10%; display: flex; gap: 5%;">
+                                <div style="flex: 1; background: #1e1e1e; border-radius: 12px; height: 120px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);"></div>
+                                <div style="flex: 1; background: #1e1e1e; border-radius: 12px; height: 120px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);"></div>
+                            </div>
+                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #b91a1a, #ed2525); color: white; padding: 12px 25px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(185,26,26,0.3);">EXPLORAR</div>
+                        </div>
+                    </div>
+                    <div class="option-card-overlay">
+                        <h3>Tema Escuro Moderno</h3>
+                        <p>Design sofisticado com fundo escuro, gradientes vibrantes e elementos de interface com efeito de vidro.</p>
+                        <a href="version2.html" target="_blank">Ver Design</a>
+                    </div>
+                </div>
+
+                <!-- Version 3 -->
+                <div class="option-card">
+                    <div class="preview-wrapper">
+                        <div class="preview-screenshot" style="background: #0b0b0e; position: relative; overflow: hidden;">
+                            <!-- Tech pattern background simulation -->
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
+                            <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(133,19,19,0.3); top: 10%; left: 60%; animation: pulse 3s infinite alternate;"></div>
+                            <div style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2;">
+                                <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: white; font-family: 'Space Grotesk', sans-serif;">SUNYATA</div>
+                                <div style="font-size: 14px; max-width: 80%; margin: 0 auto; color: rgba(255,255,255,0.7);">
+                                    <span style="color: #851313;">IA</span> do Futuro
+                                </div>
+                            </div>
+                            <div style="position: absolute; top: 40%; left: 10%; right: 10%; display: flex; gap: 5%;">
+                                <div style="flex: 1; background: rgba(255,255,255,0.02); border-radius: 8px; height: 120px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);"></div>
+                                <div style="flex: 1; background: rgba(255,255,255,0.02); border-radius: 8px; height: 120px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);"></div>
+                            </div>
+                            <div style="position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background: #851313; color: white; padding: 12px 25px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(133,19,19,0.3);">DESCUBRA</div>
+                        </div>
+                    </div>
+                    <div class="option-card-overlay">
+                        <h3>Design Futurista</h3>
+                        <p>Interface de alta tecnologia com padrões geométricos, elementos interativos e estética visual avançada.</p>
+                        <a href="version3.html" target="_blank">Ver Design</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Sunyata Consulting. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Make entire card clickable
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Prevent clicking the card from triggering the link
+                if (e.target.tagName !== 'A') {
+                    const link = this.querySelector('a');
+                    if (link) {
+                        window.open(link.getAttribute('href'), '_blank');
+                    }
+                }
+            });
+        });
+        
+        // Animation for pulse effect in the preview
+        document.styleSheets[0].insertRule(`
+            @keyframes pulse {
+                0% { transform: scale(0.8); opacity: 0.8; }
+                100% { transform: scale(1.2); opacity: 0.3; }
+            }
+        `, document.styleSheets[0].cssRules.length);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunyata Consulting | Consultoria em Inteligência Artificial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #851313;
+            --primary-light: #ca2424;
+            --dark: #0b0b0e;
+            --dark-surface: #12121a;
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            font-family: 'Raleway', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(133, 19, 19, 0.3);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            z-index: -1;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(133, 19, 19, 0.4);
+        }
+        
+        .btn:hover::before {
+            transform: translateX(10%);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        
+        .btn-outline::before {
+            opacity: 0;
+        }
+        
+        .btn-outline:hover {
+            color: var(--text-light);
+        }
+        
+        .btn-outline:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .highlight {
+            color: var(--primary-light);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(11, 11, 14, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background-color: rgba(11, 11, 14, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            list-style: none;
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .language-toggle {
+            margin-left: 20px;
+        }
+        
+        .language-toggle span {
+            padding: 5px 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .language-toggle span:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--dark);
+            padding: 180px 0 120px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(133, 19, 19, 0.3), transparent 60%),
+                        radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.15), transparent 60%);
+            opacity: 0.8;
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            margin-bottom: 25px;
+            animation: fadeInUp 1s ease;
+            line-height: 1.3;
+        }
+        
+        .hero h1 .highlight {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-stats {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1.2s ease;
+            position: relative;
+        }
+        
+        .hero-stats::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-purple));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .hero-btn {
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        /* Tech Pattern Background */
+        .tech-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.15;
+        }
+        
+        .tech-grid {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                             linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .pulse-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transform-origin: center;
+            animation: pulse 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        }
+        
+        .pulse-circle:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            border-color: rgba(133, 19, 19, 0.3);
+            animation-delay: 0s;
+        }
+        
+        .pulse-circle:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            width: 400px;
+            height: 400px;
+            border-color: rgba(59, 130, 246, 0.2);
+            animation-delay: 1s;
+        }
+        
+        .pulse-circle:nth-child(3) {
+            top: 70%;
+            left: 30%;
+            width: 200px;
+            height: 200px;
+            border-color: rgba(139, 92, 246, 0.2);
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Section Styles */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-heading h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+        
+        .section-heading p {
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+        
+        .section-bg-dark {
+            background-color: var(--dark);
+        }
+        
+        .section-bg-surface {
+            background-color: var(--dark-surface);
+        }
+        
+        .section-divider {
+            position: relative;
+            height: 100px;
+            overflow: hidden;
+        }
+        
+        .section-divider svg {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            fill: var(--dark-surface);
+        }
+        
+        .section-divider-up svg {
+            transform: rotate(180deg);
+            top: 0;
+        }
+        
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .card-icon {
+            margin: 0 auto 25px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .card-subtitle {
+            color: var(--primary-light);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .card-stats {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 15px;
+        }
+        
+        /* Destaque */
+        .destaque {
+            background-color: var(--dark-surface);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .destaque::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at bottom right, rgba(133, 19, 19, 0.2), transparent 60%),
+                        radial-gradient(circle at top left, rgba(59, 130, 246, 0.1), transparent 60%);
+            opacity: 0.8;
+        }
+        
+        .destaque-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .stats-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .stats-box::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: calc(100% + 2px);
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        /* Pilares */
+        .pilares {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pilar {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pilar:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .pilar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(133, 19, 19, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .pilar:hover::before {
+            opacity: 1;
+        }
+        
+        .pilar-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Blog */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .blog-post {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+        }
+        
+        .blog-content {
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blog-date {
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .blog-post:hover .blog-title {
+            color: var(--primary-light);
+        }
+        
+        /* Contato */
+        .contato {
+            background-color: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contato::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(133, 19, 19, 0.2), transparent 60%),
+                       radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.1), transparent 60%);
+        }
+        
+        .contato-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contato-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+            outline: none;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        textarea.form-control {
+            height: 140px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-muted);
+            padding: 70px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-purple));
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h4 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+        
+        .footer-bottom {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 150px 0 100px;
+                min-height: auto;
+            }
+            
+            .contato-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cards, .pilares, .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-box {
+                font-size: 16px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tech Pattern Background (used in various sections) -->
+    <div class="tech-pattern">
+        <div class="tech-grid"></div>
+        <div class="pulse-circle"></div>
+        <div class="pulse-circle"></div>
+        <div class="pulse-circle"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#851313" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="#851313" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="25" fill="none" stroke="#851313" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="#851313" stroke-width="2"/>
+                        <line x1="5" y1="50" x2="95" y2="50" stroke="#851313" stroke-width="2"/>
+                        <line x1="50" y1="5" x2="50" y2="95" stroke="#851313" stroke-width="2"/>
+                        <line x1="20" y1="20" x2="80" y2="80" stroke="#851313" stroke-width="2"/>
+                        <line x1="20" y1="80" x2="80" y2="20" stroke="#851313" stroke-width="2"/>
+                    </svg>
+                    <div class="logo-text">SUNYATA</div>
+                </div>
+                
+                <div class="mobile-menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Treinamentos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li class="language-toggle">
+                        <span>PT | EN</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="tech-pattern">
+            <div class="tech-grid"></div>
+            <div class="pulse-circle"></div>
+            <div class="pulse-circle"></div>
+            <div class="pulse-circle"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <h1>A <span class="highlight">IA generativa</span> está mudando o mundo. Em um ambiente de negócios em rápida transformação, você vai liderar ou resistir?</h1>
+            
+            <div class="hero-stats">
+                <p>79% dos estrategistas corporativos consideram que a IA vai ser crítico para seu sucesso,<br>porém somente 20% usam ferramentas baseadas em IA no seu dia a dia (Gartner, 2023).</p>
+            </div>
+            
+            <a href="#contato" class="btn hero-btn">ENTENDA O QUE A IA PODE FAZER POR VOCÊ</a>
+        </div>
+    </section>
+
+    <!-- Nova Realidade Section -->
+    <section class="nova-realidade section-bg-dark">
+        <div class="container text-center">
+            <div class="section-heading">
+                <h2>A Nova <span class="text-gradient">Realidade</span></h2>
+                <p>O futuro já chegou, e está sendo construído com inteligência artificial</p>
+            </div>
+            
+            <p>A inteligência artificial não é mais uma tecnologia do futuro — é uma força que já está remodelando como trabalhamos, criamos e tomamos decisões.</p>
+            
+            <p>Para profissionais e organizações, a questão não é mais se a IA vai transformar seu setor, mas como você pode se posicionar na vanguarda dessa transformação, para se adaptar aos novos tempos e tirar proveito do que a IA pode lhe oferecer.</p>
+            
+            <p>A Sunyata Consulting nasceu para ser sua parceira nessa jornada, traduzindo o potencial da IA em resultados tangíveis para seu trabalho e negócio.</p>
+        </div>
+    </section>
+
+    <!-- Desafios e Oportunidades Section -->
+    <section class="cards-section section-bg-surface">
+        <div class="tech-pattern">
+            <div class="tech-grid"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-heading">
+                <h2>Desafios e <span class="text-gradient">Oportunidades</span></h2>
+                <p>Navegando nas possibilidades transformadoras da IA generativa</p>
+            </div>
+            
+            <div class="cards">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20V10"></path>
+                            <path d="M18 20V4"></path>
+                            <path d="M6 20v-6"></path>
+                        </svg>
+                    </div>
+                    <h3>ALÉM DO HYPE</h3>
+                    <p class="card-subtitle">Separando promessas de resultados reais</p>
+                    <p>Em meio a tantas promessas sobre IA, é fundamental distinguir o que realmente funciona. Ajudamos você a identificar onde a IA pode gerar valor imediato.</p>
+                    <p class="card-stats">Profissionais com conhecimento prático economizam até 37% de tempo em tarefas cotidianas (MIT, 2023)</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 7h-9"></path>
+                            <path d="M14 17H5"></path>
+                            <circle cx="17" cy="17" r="3"></circle>
+                            <circle cx="7" cy="7" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3>POTENCIALIZANDO TALENTOS</h3>
+                    <p class="card-subtitle">IA como amplificadora de capacidades humanas</p>
+                    <p>Estudos da Harvard Business School demonstram que a IA é mais eficaz quando combina-se com a expertise humana. Nossos treinamentos focam nesta sinergia.</p>
+                    <p class="card-stats">A IA é mais eficaz quando se combina com a expertise humana (Harvard Business School)</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h3>ABORDAGEM PRÁTICA</h3>
+                    <p class="card-subtitle">Do conhecimento à aplicação</p>
+                    <p>A diferença entre entender IA conceitualmente e aplicá-la efetivamente é enorme. Nossa abordagem é centrada em aplicações práticas e imediatas.</p>
+                    <p class="card-stats">Nosso foco são aplicações que trazem resultados mensuráveis desde o primeiro dia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaque Section -->
+    <section class="destaque">
+        <div class="tech-pattern">
+            <div class="tech-grid"></div>
+            <div class="pulse-circle"></div>
+        </div>
+        
+        <div class="container destaque-content">
+            <div class="section-heading">
+                <h2>IA no <span class="text-gradient">Direito</span></h2>
+                <p>Uma nova era de eficiência jurídica</p>
+            </div>
+            
+            <div class="stats-box">
+                Reduza em até 32% o tempo necessário para tarefas como redação de contratos e documentos jurídicos (Universidade de Minnesota, 2023)
+            </div>
+            
+            <p>Desenvolvemos um programa completo para o setor jurídico que demonstra na prática como a IA generativa está transformando a advocacia. Este treinamento pode ser adaptado para as necessidades específicas de outros setores e organizações.</p>
+            
+            <a href="#" class="btn">CONHEÇA NOSSO TREINAMENTO PARA O SETOR JURÍDICO</a>
+        </div>
+    </section>
+
+    <!-- Nossa Abordagem Section -->
+    <section class="abordagem section-bg-dark">
+        <div class="tech-pattern">
+            <div class="tech-grid"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-heading">
+                <h2>Nossa <span class="text-gradient">Abordagem</span></h2>
+                <p>A Sunyata oferece uma ponte entre o potencial teórico da IA e sua aplicação prática em contextos reais</p>
+            </div>
+            
+            <div class="pilares">
+                <!-- Pilar 1 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Treinamentos Personalizados</h3>
+                    <p>Desenvolvemos programas adaptados à realidade do seu setor e necessidades específicas.</p>
+                </div>
+                
+                <!-- Pilar 2 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 11 12 14 22 4"></polyline>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                    </div>
+                    <h3>Consultoria Estratégica</h3>
+                    <p>Ajudamos a identificar oportunidades de uso de IA generativa que criam vantagens competitivas.</p>
+                </div>
+                
+                <!-- Pilar 3 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                    <h3>Aplicação Prática</h3>
+                    <p>Nosso foco está em resultados tangíveis e mensuráveis, não apenas conceitos abstratos.</p>
+                </div>
+                
+                <!-- Pilar 4 -->
+                <div class="pilar">
+                    <div class="pilar-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#851313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <h3>Visão Humana</h3>
+                    <p>Mantemos o elemento humano como centro da transformação digital, usando IA para amplificar capacidades.</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#" class="btn btn-outline">SAIBA COMO PODEMOS ADAPTAR NOSSA METODOLOGIA PARA SEU SETOR</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog section-bg-surface">
+        <div class="tech-pattern">
+            <div class="tech-grid"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-heading">
+                <h2>Insights sobre <span class="text-gradient">IA</span></h2>
+                <p>Conteúdos e reflexões que expandem seu entendimento sobre inteligência artificial</p>
+            </div>
+            
+            <div class="blog-posts">
+                <!-- Post 1 -->
+                <div class="blog-post">
+                    <div class="blog-img"></div>
+                    <div class="blog-content">
+                        <div class="blog-date">25 de Março, 2025</div>
+                        <h3 class="blog-title">Como a IA Generativa está Transformando o Setor Jurídico</h3>
+                        <p>A integração da IA no fluxo de trabalho jurídico promete revolucionar como advogados analisam documentos e...</p>
+                        <a href="#" class="btn-outline" style="padding: 10px 20px; font-size: 14px;">Ler mais</a>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="blog-post">
+                    <div class="blog-img"></div>
+                    <div class="blog-content">
+                        <div class="blog-date">18 de Março, 2025</div>
+                        <h3 class="blog-title">5 Dicas para Implementar IA na sua Organização</h3>
+                        <p>A implementação bem-sucedida de soluções de IA requer planejamento estratégico. Neste artigo, compartilhamos cinco...</p>
+                        <a href="#" class="btn-outline" style="padding: 10px 20px; font-size: 14px;">Ler mais</a>
+                    </div>
+                </div>
+                
+                <!-- Post 3 -->
+                <div class="blog-post">
+                    <div class="blog-img"></div>
+                    <div class="blog-content">
+                        <div class="blog-date">10 de Março, 2025</div>
+                        <h3 class="blog-title">O Futuro da Engenharia de Prompts na Era da IA</h3>
+                        <p>À medida que os modelos de linguagem se tornam mais sofisticados, a engenharia de prompts emerge como uma...</p>
+                        <a href="#" class="btn-outline" style="padding: 10px 20px; font-size: 14px;">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#" class="btn btn-outline">VER TODOS OS ARTIGOS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section class="contato" id="contato">
+        <div class="tech-pattern">
+            <div class="tech-grid"></div>
+            <div class="pulse-circle"></div>
+        </div>
+        
+        <div class="container contato-content">
+            <div class="section-heading">
+                <h2>Seu Próximo <span class="text-gradient">Passo</span></h2>
+                <p>Comece agora sua jornada para a transformação digital com IA</p>
+            </div>
+            
+            <p class="text-center">O diferencial competitivo na era da IA não pertencerá necessariamente a quem tem acesso à melhor tecnologia, mas a quem melhor souber integrá-la em seus processos e cultura.</p>
+            <p class="text-center">A Sunyata Consulting está pronta para ser sua parceira nesta jornada.</p>
+            
+            <div class="contato-container">
+                <div class="contato-info">
+                    <h3>Entre em contato</h3>
+                    <p>Estamos prontos para discutir como podemos ajudar você e sua organização a navegar pela revolução da IA generativa.</p>
+                    <p><strong>Email:</strong> contato@sunyataconsulting.com</p>
+                </div>
+                
+                <div class="contato-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" class="form-control" placeholder="Seu nome">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Seu email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="empresa">Empresa/Organização</label>
+                            <input type="text" id="empresa" class="form-control" placeholder="Nome da sua empresa">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" class="form-control" placeholder="Como podemos ajudar?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">ENVIAR MENSAGEM</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="25" fill="none" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="50" r="15" fill="none" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <line x1="5" y1="50" x2="95" y2="50" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <line x1="50" y1="5" x2="50" y2="95" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <line x1="20" y1="20" x2="80" y2="80" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                            <line x1="20" y1="80" x2="80" y2="20" stroke="#851313" stroke-width="2" opacity="0.8"/>
+                        </svg>
+                        <div class="logo-text">SUNYATA</div>
+                    </div>
+                    <p>Transformando o potencial da IA em resultados tangíveis para seu trabalho e negócio.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Treinamentos</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#">Treinamentos em IA</a></li>
+                        <li><a href="#">Consultoria Estratégica</a></li>
+                        <li><a href="#">Palestras e Workshops</a></li>
+                        <li><a href="#">Avaliação de IA Readiness</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li>Email: contato@sunyataconsulting.com</li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Sunyata Consulting. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
