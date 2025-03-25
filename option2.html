@@ -1,232 +1,859 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunyata | Void</title>
+    <title>Sunyata | Consultoria em IA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --accent-color: #6b8cef;
+            --primary: #5a0505;
+            --primary-light: #8a2121;
+            --primary-dark: #4a0404;
+            --secondary: #e6e7ee;
+            --secondary-light: #ffffff;
+            --secondary-dark: #c8c9d8;
+            --text-dark: #444;
+            --text-light: #666;
+            --shadow-large: 8px 8px 16px #c8c9d8, -8px -8px 16px #ffffff;
+            --shadow-small: 5px 5px 10px #c8c9d8, -5px -5px 10px #ffffff;
+            --shadow-inset: inset 2px 2px 5px #c8c9d8, inset -2px -2px 5px #ffffff;
+            --transition: all 0.3s ease;
+            --radius: 15px;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
-        
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            overflow-x: hidden;
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
-        
-        #particles-js {
-            position: absolute;
+
+        .container {
             width: 100%;
-            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        header {
+            padding: 25px 0;
+            position: sticky;
             top: 0;
-            left: 0;
-            z-index: 1;
+            z-index: 100;
+            background-color: var(--secondary);
         }
-        
-        .content {
-            max-width: 800px;
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-small);
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-small);
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item:hover {
+            box-shadow: var(--shadow-inset);
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 80px 0;
             text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-large);
             position: relative;
-            z-index: 2;
+            overflow: hidden;
         }
-        
-        h1 {
-            font-weight: 200;
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            letter-spacing: 0.7rem;
-            background: linear-gradient(to right, #8e2de2, #4a00e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradientText 10s ease infinite;
-            background-size: 200% 200%;
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgba(90, 5, 5, 0.05);
+            z-index: -1;
         }
-        
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.8;
+
+        .hero-content::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(90, 5, 5, 0.05);
+            z-index: -1;
         }
-        
-        p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0.9;
         }
-        
-        .highlight {
-            color: var(--accent-color);
+
+        .cta-button {
+            padding: 15px 30px;
+            border-radius: 30px;
+            background-color: var(--secondary);
+            color: var(--primary);
             font-weight: 600;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
-        
-        .quote {
-            font-style: italic;
-            margin: 3rem 0;
-            padding: 1rem;
-            border-left: 3px solid var(--accent-color);
-            text-align: left;
+
+        .cta-button:hover {
+            box-shadow: var(--shadow-inset);
+            transform: scale(0.98);
         }
-        
-        @keyframes gradientText {
-            0% {
-                background-position: 0% 50%;
+
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-light);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-large);
+            transition: var(--transition);
+            background-color: var(--secondary);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-small);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .learn-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            width: fit-content;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-small);
+            transition: var(--transition);
+        }
+
+        .learn-more:hover {
+            box-shadow: var(--shadow-inset);
+        }
+
+        .learn-more svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+
+        .learn-more:hover svg {
+            transform: translateX(3px);
+        }
+
+        .module-section {
+            padding: 80px 0;
+            background-color: var(--secondary-light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-large);
+            margin: 40px 0;
+        }
+
+        .modules-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .module-card {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-large);
+            overflow: hidden;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .module-header {
+            padding: 25px;
+            position: relative;
+        }
+
+        .module-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            box-shadow: var(--shadow-small);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .module-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .module-subtitle {
+            font-size: 15px;
+            color: var(--text-light);
+        }
+
+        .module-content {
+            padding: 25px;
+        }
+
+        .topics-list {
+            list-style-type: none;
+        }
+
+        .topics-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .topic-icon {
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            box-shadow: var(--shadow-small);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .topic-icon svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--primary);
+        }
+
+        .topic-text {
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-large);
+            background-color: var(--secondary);
+        }
+
+        .cta-title {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .cta-description {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            background-color: var(--secondary);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-light);
+            border-radius: 2px;
+        }
+
+        .footer-about p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: var(--shadow-small);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            background-color: var(--secondary);
+        }
+
+        .social-links a:hover {
+            box-shadow: var(--shadow-inset);
+            color: var(--primary);
+        }
+
+        .social-links svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover svg {
+            fill: var(--primary);
+        }
+
+        .footer-links {
+            list-style-type: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .features-grid, .modules-container {
+                grid-template-columns: repeat(2, 1fr);
             }
-            50% {
-                background-position: 100% 50%;
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            100% {
-                background-position: 0% 50%;
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                display: none;
+            }
+            
+            .features-grid, .modules-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content, .cta-container {
+                padding: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    
-    <div class="content">
-        <h1>SUNYATA</h1>
-        <div class="tagline">Exploring the void within form</div>
-        
-        <p>In Buddhist philosophy, <span class="highlight">Sunyata</span> (emptiness) is the understanding that all phenomena are empty of inherent existence.</p>
-        
-        <p>Everything that exists is in a constant state of flux, arising and passing away due to causes and conditions, never existing independently.</p>
-        
-        <div class="quote">
-            "Form is emptiness, emptiness is form. Emptiness is not separate from form, form is not separate from emptiness."<br>
-            — Heart Sutra
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="LOGO_SUNYATA.jpg" alt="Sunyata Logo">
+                    <div class="logo-text">SUNYATA</div>
+                </div>
+                <nav class="navigation">
+                    <a href="#" class="nav-item">Home</a>
+                    <a href="#" class="nav-item">Sobre</a>
+                    <a href="#" class="nav-item">Treinamentos</a>
+                    <a href="#" class="nav-item">Consultoria</a>
+                    <a href="#" class="nav-item">Blog</a>
+                    <a href="#" class="nav-item">Contato</a>
+                </nav>
+                <a href="#" class="cta-button">Solicitar Proposta</a>
+            </div>
         </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ffffff",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 1,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-        });
-    </script>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Consultoria Especializada em Inteligência Artificial</h1>
+                <p>Em um ambiente de negócios em rápida transformação, construímos a ponte entre o potencial teórico da IA e sua aplicação prática em contextos reais.</p>
+                <a href="#" class="cta-button">Conheça Nossos Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Desafios e Oportunidades</h2>
+            <p class="section-subtitle">Ajudamos você a navegar pelo cenário da Inteligência Artificial, identificando onde a tecnologia pode trazer valor real para o seu trabalho e negócio.</p>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Além do Hype</h3>
+                    <p class="feature-description">Em meio a tantas promessas sobre IA, ajudamos você a distinguir o que realmente funciona. Identificamos onde a IA pode gerar valor imediato para seu negócio ou carreira.</p>
+                    <a href="#" class="learn-more">
+                        Saiba mais
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 11.08V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2v-3.08c.58-.21 1-.79 1-1.42V12.5c0-.63-.42-1.21-1-1.42zM13 3.5V9h5.5L13 3.5z"></path>
+                            <path d="M11 17.5c0 .83-.67 1.5-1.5 1.5S8 18.33 8 17.5 8.67 16 9.5 16s1.5.67 1.5 1.5z"></path>
+                            <path d="M16 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Potencializando Talentos</h3>
+                    <p class="feature-description">Estudos demonstram que a IA é mais eficaz quando combina-se com a expertise humana. Nossos treinamentos focam nesta sinergia, amplificando suas capacidades profissionais.</p>
+                    <a href="#" class="learn-more">
+                        Saiba mais
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Abordagem Prática</h3>
+                    <p class="feature-description">A diferença entre entender IA conceitualmente e aplicá-la efetivamente é enorme. Nossa abordagem é centrada em aplicações práticas e imediatas com resultados mensuráveis.</p>
+                    <a href="#" class="learn-more">
+                        Saiba mais
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="module-section">
+        <div class="container">
+            <h2 class="section-title">IA para o Direito: Uma Nova Era de Eficiência Jurídica</h2>
+            <p class="section-subtitle">Nosso treinamento especializado para profissionais do Direito demonstra na prática como a IA generativa está transformando a advocacia.</p>
+            
+            <div class="modules-container">
+                <!-- Module 1 -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-number">1</div>
+                        <h3 class="module-title">Fundamentos da Engenharia de Prompts</h3>
+                        <p class="module-subtitle">Compreendendo e otimizando a comunicação com IAs generativas</p>
+                    </div>
+                    <div class="module-content">
+                        <ul class="topics-list">
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Fundamentos das IAs generativas e seus limites</p>
+                            </li>
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Técnicas de engenharia de prompts para resultados consistentes</p>
+                            </li>
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Exercícios práticos com casos do cotidiano jurídico</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-number">2</div>
+                        <h3 class="module-title">IA Generativa para Serviços Jurídicos</h3>
+                        <p class="module-subtitle">Aplicações específicas da IA no contexto jurídico</p>
+                    </div>
+                    <div class="module-content">
+                        <ul class="topics-list">
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Redação e revisão de contratos e documentos legais</p>
+                            </li>
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Pesquisa jurídica aprimorada com IA</p>
+                            </li>
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Considerações éticas e de privacidade no uso da IA</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-number">3</div>
+                        <h3 class="module-title">Criando Assistentes Jurídicos Personalizados</h3>
+                        <p class="module-subtitle">Desenvolvimento de GPTs especializados para necessidades específicas</p>
+                    </div>
+                    <div class="module-content">
+                        <ul class="topics-list">
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Configuração de conhecimento especializado jurídico</p>
+                            </li>
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Integração de documentos e base de conhecimento personalizada</p>
+                            </li>
+                            <li>
+                                <div class="topic-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                    </svg>
+                                </div>
+                                <p class="topic-text">Implementação em equipes jurídicas e fluxos de trabalho</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-container">
+                <h2 class="cta-title">Transforme sua Prática Profissional com IA</h2>
+                <p class="cta-description">O diferencial competitivo na era da IA não pertencerá necessariamente a quem tem acesso à melhor tecnologia, mas a quem melhor souber integrá-la em seus processos e cultura.</p>
+                <a href="#" class="cta-button">Solicitar Proposta Personalizada</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- About Column -->
+                <div class="footer-column footer-about">
+                    <h3>Sobre a Sunyata</h3>
+                    <p>A Sunyata Consulting oferece a ponte entre o potencial teórico da IA e sua aplicação prática em contextos reais, com treinamentos personalizados e estratégias de integração.</p>
+                    <div class="social-links">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Treinamentos</a></li>
+                        <li><a href="#">Consultoria</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Courses -->
+                <div class="footer-column">
+                    <h3>Treinamentos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">IA para Advogados</a></li>
+                        <li><a href="#">Engenharia de Prompts</a></li>
+                        <li><a href="#">GPTs Personalizados</a></li>
+                        <li><a href="#">Workshops</a></li>
+                        <li><a href="#">In-company</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contato@sunyataconsulting.com">contato@sunyataconsulting.com</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2025 Sunyata Consulting. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
